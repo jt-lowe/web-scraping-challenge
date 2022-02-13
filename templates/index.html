@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars - JL</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+
+    <h3><strong>{{info.news_title}}</strong></h3>
+    <p>{{info.news_p}}</p>
+
+
+    <div class="container-fluid">
+      <div class='row'>
+        <div class="container col-xs-6">
+          <h3><strong>Featured Mars Image</strong></h3>
+          <img width=100% src="{{ info.feat_img_url }}" alt="Featured Image">
+        </div>
+        <div class="container col-xs-4">
+          <h3><strong>Mars Facts</strong></h3>
+          {{info.table_html|safe}}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class='row'>
+        <h3 class="text-center"><strong>Mars Hemispheres</strong></h3>
+        <hr>
+        </hr>
+      </div>
+      <div class="row">
+        {% for dict in info.hemi_img_urls %}
+        <div class="col-xs-3">
+          <div class="thumb">
+            <img class="card-img-top" src='{{ dict.img_url }}' alt='{{ dict.title }}'  width=100%>
+            <div class="card-body">
+              <h4 class="card-title">{{dict.title}}</h4>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>
